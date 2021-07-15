@@ -53,6 +53,14 @@ public enum PropertyDefinition {
         + "When you set this property during a session to change the current database for the session, this property is equivalent to the OLE DB property, DBPROP_CURRENTCATALOG.\n"
         + "The default value for this property is an empty string."),
 
+    ClientProcessID(
+            RowsetDefinition.Type.UnsignedInteger,
+            null,
+            XmlaConstants.Access.ReadWrite,
+            "None",
+            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+            "Contains the identifier (ID) of the process thread for the current session."),
+
     Content(
         RowsetDefinition.Type.EnumString,
         Olap4jUtil.enumSetAllOf(XmlaConstants.Content.class),
