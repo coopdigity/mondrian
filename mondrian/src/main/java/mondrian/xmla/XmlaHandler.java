@@ -708,6 +708,7 @@ public class XmlaHandler {
                         + "through"));
             }
         } else {
+            /** Excell needs to support Native
             final String formatName =
                 properties.get(PropertyDefinition.Format.name());
             if (formatName != null) {
@@ -719,7 +720,7 @@ public class XmlaHandler {
                         "<Format>: only 'Multidimensional', 'Tabular' "
                         + "currently supported");
                 }
-            }
+            }*/
             final String axisFormatName =
                 properties.get(PropertyDefinition.AxisFormat.name());
             if (axisFormatName != null) {
@@ -1347,6 +1348,7 @@ public class XmlaHandler {
     }
 
     static void writeEmptyDatasetXmlSchema(SaxWriter writer, SetType setType) {
+        /* Excel
         String setNsXmla = NS_XMLA_ROWSET;
         writer.startElement(
             "xsd:schema",
@@ -1362,6 +1364,7 @@ public class XmlaHandler {
             "name", "root");
 
         writer.endElement(); // xsd:schema
+        */
     }
 
     private QueryResult executeDrillThroughQuery(XmlaRequest request)
@@ -1720,16 +1723,19 @@ public class XmlaHandler {
                 final Enumeration.ResponseMimeType responseMimeType =
                     getResponseMimeType(request);
                 final MDDataSet dataSet;
-                if (format == Format.Multidimensional) {
+                
+                // Excel needs to support Multidimensional by default
+
+                if (format == Format.Tabular) {
+                    dataSet =
+                        new MDDataSet_Tabular(cellSet);
+                } else {
                     dataSet =
                         new MDDataSet_Multidimensional(
                             cellSet,
                             content != Content.DataIncludeDefaultSlicer,
                             responseMimeType
                             == Enumeration.ResponseMimeType.JSON);
-                } else {
-                    dataSet =
-                        new MDDataSet_Tabular(cellSet);
                 }
                 success = true;
                 return dataSet;

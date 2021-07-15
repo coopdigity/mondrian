@@ -82,7 +82,8 @@ public enum RowsetDefinition {
         // XMLA does not specify a sort order, but olap4j does.
         new Column[] {
             DiscoverDatasourcesRowset.DataSourceName,
-        })
+        },
+        "06C03D41-F66D-49F3-B1B8-987F7AF4CF18")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverDatasourcesRowset(request, handler);
@@ -106,8 +107,9 @@ public enum RowsetDefinition {
             DiscoverSchemaRowsetsRowset.SchemaGuid,
             DiscoverSchemaRowsetsRowset.Restrictions,
             DiscoverSchemaRowsetsRowset.Description,
+            DiscoverSchemaRowsetsRowset.RestrictionsMask
         },
-        null /* not sorted */)
+        null /* not sorted */, "EEA0302B-7922-4992-8991-0E605D0E5593")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverSchemaRowsetsRowset(request, handler);
@@ -210,7 +212,8 @@ public enum RowsetDefinition {
             DiscoverEnumeratorsRowset.ElementDescription,
             DiscoverEnumeratorsRowset.ElementValue,
         },
-        null /* not sorted */)
+        null /* not sorted */,
+        "55A9E78B-ACCB-45B4-95A6-94C5065617A7")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverEnumeratorsRowset(request, handler);
@@ -238,7 +241,8 @@ public enum RowsetDefinition {
             DiscoverPropertiesRowset.IsRequired,
             DiscoverPropertiesRowset.Value,
         },
-        null /* not sorted */)
+        null /* not sorted */,
+        "4B40ADFB-8B09-4758-97BB-636E8AE97BCF")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverPropertiesRowset(request, handler);
@@ -259,7 +263,8 @@ public enum RowsetDefinition {
         new Column[] {
             DiscoverKeywordsRowset.Keyword,
         },
-        null /* not sorted */)
+        null /* not sorted */,
+        "1426C443-4CDD-4A40-8F45-572FAB9BBAA1")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverKeywordsRowset(request, handler);
@@ -284,7 +289,8 @@ public enum RowsetDefinition {
             DiscoverLiteralsRowset.LiteralInvalidStartingChars,
             DiscoverLiteralsRowset.LiteralMaxLength,
         },
-        null /* not sorted */)
+        null /* not sorted */,
+        "C3EF5ECB-0A07-4665-A140-B075722DBDC2")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DiscoverLiteralsRowset(request, handler);
@@ -311,7 +317,8 @@ public enum RowsetDefinition {
         },
         new Column[] {
             DbschemaCatalogsRowset.CatalogName,
-        })
+        },
+        "C8B52211-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DbschemaCatalogsRowset(request, handler);
@@ -348,7 +355,8 @@ public enum RowsetDefinition {
             DbschemaColumnsRowset.TableCatalog,
             DbschemaColumnsRowset.TableSchema,
             DbschemaColumnsRowset.TableName,
-        })
+        },
+        "C8B52214-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DbschemaColumnsRowset(request, handler);
@@ -382,13 +390,14 @@ public enum RowsetDefinition {
         },
         new Column[] {
             DbschemaProviderTypesRowset.DataType,
-        })
+        },
+        "C8B5222C-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DbschemaProviderTypesRowset(request, handler);
         }
     },
-
+/** Excel hurts otherwise  
     DBSCHEMA_SCHEMATA(
         8, null,
         new Column[] {
@@ -406,7 +415,7 @@ public enum RowsetDefinition {
             return new DbschemaSchemataRowset(request, handler);
         }
     },
-
+**/
     /**
      * http://msdn2.microsoft.com/en-us/library/ms126299(SQL.90).aspx
      *
@@ -438,7 +447,8 @@ public enum RowsetDefinition {
             DbschemaTablesRowset.TableCatalog,
             DbschemaTablesRowset.TableSchema,
             DbschemaTablesRowset.TableName,
-        })
+        },
+        "C8B52229-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DbschemaTablesRowset(request, handler);
@@ -472,7 +482,8 @@ public enum RowsetDefinition {
             DbschemaTablesInfoRowset.Description,
             DbschemaTablesInfoRowset.TablePropId,
         },
-        null /* cannot find doc -- presume unsorted */)
+        null /* cannot find doc -- presume unsorted */,
+        "C8B522E0-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new DbschemaTablesInfoRowset(request, handler);
@@ -520,7 +531,7 @@ public enum RowsetDefinition {
             MdschemaActionsRowset.SchemaName,
             MdschemaActionsRowset.CubeName,
             MdschemaActionsRowset.ActionName,
-        })
+        },"A07CCD08-8148-11D0-87BB-00C04FC33942")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaActionsRowset(request, handler);
@@ -576,7 +587,7 @@ public enum RowsetDefinition {
             MdschemaCubesRowset.CatalogName,
             MdschemaCubesRowset.SchemaName,
             MdschemaCubesRowset.CubeName,
-        })
+        },"C8B522D8-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaCubesRowset(request, handler);
@@ -632,7 +643,7 @@ public enum RowsetDefinition {
             MdschemaDimensionsRowset.SchemaName,
             MdschemaDimensionsRowset.CubeName,
             MdschemaDimensionsRowset.DimensionName,
-        })
+        },"C8B522D9-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaDimensionsRowset(request, handler);
@@ -677,7 +688,7 @@ public enum RowsetDefinition {
             MdschemaFunctionsRowset.InterfaceName,
             MdschemaFunctionsRowset.FunctionName,
             MdschemaFunctionsRowset.Origin,
-        })
+        }, "A07CCD07-8148-11D0-87BB-00C04FC33942")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaFunctionsRowset(request, handler);
@@ -746,7 +757,8 @@ public enum RowsetDefinition {
             MdschemaHierarchiesRowset.CubeName,
             MdschemaHierarchiesRowset.DimensionUniqueName,
             MdschemaHierarchiesRowset.HierarchyName,
-        })
+        },
+        "C8B522DA-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaHierarchiesRowset(request, handler);
@@ -819,7 +831,8 @@ public enum RowsetDefinition {
             MdschemaLevelsRowset.DimensionUniqueName,
             MdschemaLevelsRowset.HierarchyUniqueName,
             MdschemaLevelsRowset.LevelNumber,
-        })
+        },
+        "C8B522DB-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaLevelsRowset(request, handler);
@@ -880,7 +893,8 @@ public enum RowsetDefinition {
             MdschemaMeasuresRowset.SchemaName,
             MdschemaMeasuresRowset.CubeName,
             MdschemaMeasuresRowset.MeasureName,
-        })
+        },
+        "C8B522DC-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaMeasuresRowset(request, handler);
@@ -952,7 +966,8 @@ public enum RowsetDefinition {
             MdschemaMembersRowset.LevelUniqueName,
             MdschemaMembersRowset.LevelNumber,
             MdschemaMembersRowset.MemberOrdinal,
-        })
+        },
+        "C8B522DE-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaMembersRowset(request, handler);
@@ -1023,7 +1038,8 @@ public enum RowsetDefinition {
             MdschemaPropertiesRowset.PropertyContentType,
             MdschemaPropertiesRowset.Description
         },
-        null /* not sorted */)
+        null /* not sorted */,
+        "C8B522DD-5CF3-11CE-ADE5-00AA0044773D")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaPropertiesRowset(request, handler);
@@ -1063,7 +1079,8 @@ public enum RowsetDefinition {
             MdschemaSetsRowset.CatalogName,
             MdschemaSetsRowset.SchemaName,
             MdschemaSetsRowset.CubeName,
-        })
+        },
+        "A07CCD0B-8148-11D0-87BB-00C04FC33942")
     {
         public Rowset getRowset(XmlaRequest request, XmlaHandler handler) {
             return new MdschemaSetsRowset(request, handler);
@@ -1072,6 +1089,7 @@ public enum RowsetDefinition {
 
     transient final Column[] columnDefinitions;
     transient final Column[] sortColumnDefinitions;
+    transient final String schemaGuid;
 
     /**
      * Date the schema was last modified.
@@ -1098,12 +1116,14 @@ public enum RowsetDefinition {
         int ordinal,
         String description,
         Column[] columnDefinitions,
-        Column[] sortColumnDefinitions)
+        Column[] sortColumnDefinitions,
+        String guid)
     {
         Util.discard(ordinal);
         this.description = description;
         this.columnDefinitions = columnDefinitions;
         this.sortColumnDefinitions = sortColumnDefinitions;
+        this.schemaGuid = guid;
     }
 
     public abstract Rowset getRowset(XmlaRequest request, XmlaHandler handler);
@@ -1638,6 +1658,15 @@ public enum RowsetDefinition {
     }
 
     static class DiscoverSchemaRowsetsRowset extends Rowset {
+        // Excel
+        private static final Column RestrictionsMask =
+                new Column(
+                  "RestrictionsMask",
+                  Type.UnsignedLong,
+                  null,
+                  Column.NOT_RESTRICTION,
+                  Column.OPTIONAL,
+                  "");
         private static final Column SchemaName =
             new Column(
                 "SchemaName",
@@ -1702,7 +1731,7 @@ public enum RowsetDefinition {
                 row.set(SchemaName.name, rowsetDefinition.name());
 
                 // TODO: If we have a SchemaGuid output here
-                //row.set(SchemaGuid.name, "");
+                row.set(SchemaGuid.name, rowsetDefinition.schemaGuid);
 
                 row.set(Restrictions.name, getRestrictions(rowsetDefinition));
 
@@ -1808,8 +1837,9 @@ public enum RowsetDefinition {
                 Column.REQUIRED,
                 "The current value of the property.");
 
+        /* to be able to call setCatalogPropertyValue() */
         protected boolean needConnection() {
-            return false;
+            return true; //;
         }
 
         public void populateImpl(
@@ -1819,6 +1849,12 @@ public enum RowsetDefinition {
             for (PropertyDefinition propertyDefinition
                 : PropertyDefinition.class.getEnumConstants())
             {
+		if(propertyDefinition.name().equals(PropertyDefinition.Catalog.name()) &&
+                        propertyDefinition.value.equals("")) {
+                       setCatalogPropertyValue(connection);
+                 }
+
+
                 if (!propNameCond.apply(propertyDefinition)) {
                     continue;
                 }
@@ -1844,6 +1880,21 @@ public enum RowsetDefinition {
                 super.setProperty(propertyDef, value);
             }
         }
+        
+        private void setCatalogPropertyValue(OlapConnection connection) {
+            LOGGER.debug("setting property value");
+            try {
+             LOGGER.debug("connection"+connection);
+             List<Catalog> catalogs = connection.getOlapCatalogs();
+             LOGGER.debug("catalogs length"+catalogs.size());
+             if(catalogs.size() !=0 ) {
+              PropertyDefinition.Catalog.setValue(catalogs.get(0).getName());
+             }
+            } catch (OlapException e) {
+                   throw new RuntimeException(
+                       "Failed to obtain a list of catalogs form the connection object.", e);
+            }
+       }
     }
 
     static class DiscoverEnumeratorsRowset extends Rowset {
@@ -2862,7 +2913,7 @@ TODO: see above
             }
         }
     }
-
+/**
     static class DbschemaSchemataRowset extends Rowset {
         private final Util.Functor1<Boolean, Catalog> catalogNameCond;
 
@@ -2931,7 +2982,7 @@ TODO: see above
             }
         }
     }
-
+*/
     static class DbschemaTablesRowset extends Rowset {
         private final Util.Functor1<Boolean, Catalog> tableCatalogCond;
         private final Util.Functor1<Boolean, Cube> tableNameCond;
@@ -3969,7 +4020,7 @@ TODO: see above
             // Added by TWI to returned cached row numbers
 
             int n = getExtra(connection).getLevelCardinality(lastLevel);
-            row.set(DimensionCardinality.name, n + 1);
+            row.set(DimensionCardinality.name, n==Integer.MIN_VALUE ? Integer.MAX_VALUE:n + 1);
 
             // TODO: I think that this is just the dimension name
             row.set(DefaultHierarchy.name, dimension.getUniqueName());
@@ -4536,7 +4587,10 @@ TODO: see above
             // cardinality. Consumers should not assume that this
             // value is accurate.
             int cardinality = extra.getHierarchyCardinality(hierarchy);
-            row.set(HierarchyCardinality.name, cardinality);
+            row.set(HierarchyCardinality.name,
+                    //cardinality
+                    cardinality<0 ? Integer.MAX_VALUE:cardinality
+                    );
 
             row.set(
                 DefaultMember.name,
@@ -4898,7 +4952,7 @@ TODO: see above
             // According to microsoft this is:
             //   "The number of members in the level."
             int n = extra.getLevelCardinality(level);
-            row.set(LevelCardinality.name, n);
+            row.set(LevelCardinality.name, n<0 ? Integer.MAX_VALUE:n);
 
             row.set(LevelType.name, getLevelType(level));
 
@@ -6056,7 +6110,7 @@ TODO: see above
                 "A human-readable description of the measure.");
 
         protected boolean needConnection() {
-            return false;
+            return true;
         }
 
         public void populateImpl(
@@ -6083,7 +6137,7 @@ TODO: see above
             for (Property.TypeFlag typeFlag : typeFlags) {
                 switch (typeFlag) {
                 case MEMBER:
-                    populateMember(rows);
+                    populateMember(rows, connection);
                     break;
                 case CELL:
                     populateCell(rows);
@@ -6113,11 +6167,12 @@ TODO: see above
             }
         }
 
-        private void populateMember(List<Row> rows) throws SQLException {
-            OlapConnection connection =
+        private void populateMember(List<Row> rows, OlapConnection connection) throws SQLException {
+             /* OlapConnection connection = 
                 handler.getConnection(
                     request,
                     Collections.<String, String>emptyMap());
+	    */
             for (Catalog catalog
                 : catIter(connection, catNameCond(), catalogCond))
             {
@@ -6236,8 +6291,12 @@ TODO: see above
             row.set(SchemaName.name, cube.getSchema().getName());
             row.set(CubeName.name, cube.getName());
             row.set(DimensionUniqueName.name, dimension.getUniqueName());
+            /*
             row.set(HierarchyUniqueName.name, hierarchy.getUniqueName());
             row.set(LevelUniqueName.name, level.getUniqueName());
+            */
+            row.set(HierarchyUniqueName.name, dimension.getUniqueName()+"."+hierarchy.getUniqueName());
+            row.set(LevelUniqueName.name, dimension.getUniqueName()+"."+hierarchy.getUniqueName()+"."+level.getUniqueName());
             //TODO: what is the correct value here
             //row.set(MemberUniqueName.name, "");
 
