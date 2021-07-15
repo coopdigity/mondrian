@@ -2922,9 +2922,8 @@ TODO: see above
             catalogNameCond = makeCondition(CATALOG_NAME_GETTER, CatalogName);
         }
 
-        /*
-         * These are the columns returned by SQL Server.
-         */
+
+         // These are the columns returned by SQL Server.
         private static final Column CatalogName =
             new Column(
                 "CATALOG_NAME",
