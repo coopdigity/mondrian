@@ -53,14 +53,6 @@ public enum PropertyDefinition {
         + "When you set this property during a session to change the current database for the session, this property is equivalent to the OLE DB property, DBPROP_CURRENTCATALOG.\n"
         + "The default value for this property is an empty string."),
 
-    ClientProcessID(
-            RowsetDefinition.Type.UnsignedInteger,
-            null,
-            XmlaConstants.Access.ReadWrite,
-            "None",
-            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
-            "Contains the identifier (ID) of the process thread for the current session."),
-
     Content(
         RowsetDefinition.Type.EnumString,
         Olap4jUtil.enumSetAllOf(XmlaConstants.Content.class),
@@ -242,38 +234,55 @@ public enum PropertyDefinition {
         XmlaConstants.Method.DISCOVER_AND_EXECUTE,
         ""),
     
-    //excell support
+    //Excel support
+    ClientProcessID(
+        RowsetDefinition.Type.UnsignedInteger,
+        null,
+        XmlaConstants.Access.ReadWrite,
+        "None",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "Contains the identifier (ID) of the process thread for the current session."),
+
     DbpropMsmdMDXCompatibility(
-            RowsetDefinition.Type.Integer,
-            null,
-            XmlaConstants.Access.ReadWrite,
-            "1",
-            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
-            "DbpropMsmdMDXCompatibility" ),
+        RowsetDefinition.Type.Integer,
+        null,
+        XmlaConstants.Access.ReadWrite,
+        "1",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "DbpropMsmdMDXCompatibility" ),
                  
-           MdxMissingMemberMode(
-            RowsetDefinition.Type.String,
-            null,
-            XmlaConstants.Access.ReadWrite,
-            "Error",
-            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
-            "DbpropMsmdSubqueries" ),
+   MdxMissingMemberMode(
+        RowsetDefinition.Type.String,
+        null,
+        XmlaConstants.Access.ReadWrite,
+        "Error",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "DbpropMsmdSubqueries" ),
 
-           SafetyOptions(
-            RowsetDefinition.Type.Integer,
-            null,
-            XmlaConstants.Access.ReadWrite,
-            "",
-            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
-            "SafetyOptions" ),
+   SafetyOptions(
+        RowsetDefinition.Type.Integer,
+        null,
+        XmlaConstants.Access.ReadWrite,
+        "",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "SafetyOptions" ),
 
-            MdpropMdxDrillFunctions(
-            RowsetDefinition.Type.Integer,
-            null,
-            XmlaConstants.Access.Read,
-            "3",
-            XmlaConstants.Method.DISCOVER_AND_EXECUTE,
-            "A bitmask indicating support for drilldown and drillup groups of functions. " )
+    SspropInitAppName(
+        RowsetDefinition.Type.String,
+        null,
+        XmlaConstants.Access.ReadWrite,
+        "",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "Contains the name of the client application."
+    ),
+
+    MdpropMdxDrillFunctions(
+        RowsetDefinition.Type.Integer,
+        null,
+        XmlaConstants.Access.Read,
+        "3",
+        XmlaConstants.Method.DISCOVER_AND_EXECUTE,
+        "A bitmask indicating support for drilldown and drillup groups of functions. " )
 
             ;
             
