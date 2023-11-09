@@ -18,7 +18,8 @@ import mondrian.olap.type.StringType;
 import mondrian.rolap.sql.MemberChildrenConstraint;
 import mondrian.rolap.sql.TupleConstraint;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import org.eigenbase.util.property.Property;
 
@@ -47,7 +48,7 @@ public class RolapSchemaReader
     private final SqlConstraintFactory sqlConstraintFactory =
         SqlConstraintFactory.instance();
     private static final Logger LOGGER =
-        Logger.getLogger(RolapSchemaReader.class);
+        LogManager.getLogger(RolapSchemaReader.class);
 
     /**
      * Creates a RolapSchemaReader.
@@ -170,6 +171,12 @@ public class RolapSchemaReader
         return Util.cast(memberList);
     }
 
+    public int countMemberChildren(Member member, Evaluator context) {
+        MemberChildrenConstraint constraint =
+          sqlConstraintFactory.getMemberChildrenConstraint(context);
+        return countMemberChildren(member, constraint);
+    }
+
     /**
      * Helper for getMemberChildren.
      *
@@ -186,6 +193,15 @@ public class RolapSchemaReader
         memberReader.getMemberChildren(
             (RolapMember) member, children, constraint);
         return children;
+    }
+
+    private int countMemberChildren(
+      Member member, MemberChildrenConstraint constraint)
+    {
+        List<RolapMember> children = new ArrayList<RolapMember>();
+        final Hierarchy hierarchy = member.getHierarchy();
+        final MemberReader memberReader = getMemberReader(hierarchy);
+        return memberReader.countMemberChildren( member, children, constraint );
     }
 
     public void getParentChildContributingChildren(
@@ -746,6 +762,10 @@ public class RolapSchemaReader
             (RolapMember) member,
             memberChildren,
             constraint);
+    }
+
+    @Override public int countMemberChildren( Member parentMember ) {
+        return countMemberChildren( parentMember, (Evaluator) null);
     }
 
     /**

@@ -12,9 +12,12 @@ package mondrian.olap;
 import mondrian.mdx.*;
 
 import org.apache.commons.collections.*;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.apache.commons.collections.CollectionUtils.filter;
 
@@ -38,7 +41,7 @@ import static org.apache.commons.collections.CollectionUtils.filter;
  *
  */
 public final class IdBatchResolver {
-    static final Logger LOGGER = Logger.getLogger(IdBatchResolver.class);
+    static final Logger LOGGER = LogManager.getLogger(IdBatchResolver.class);
 
     private final Query query;
     private final Formula[] formulas;
@@ -255,16 +258,13 @@ public final class IdBatchResolver {
     private List<Id.NameSegment> collectChildrenNameSegments(
         final Member parentMember, List<Id> children)
     {
-        filter(
-            children, new Predicate() {
-            // remove children we can't support
-                public boolean evaluate(Object theId)
-                {
-                    Id id = (Id)theId;
-                    return !Util.matches(parentMember, id.getSegments())
-                        && supportedIdentifier(id);
-                }
-            });
+        children = children.parallelStream()
+          .filter(theId -> {
+              Id id = (Id) theId;
+              return !Util.matches(parentMember, id.getSegments()) && supportedIdentifier(id);
+          })
+          .collect( Collectors.toList());
+
         return new ArrayList(
             CollectionUtils.collect(
                 children, new Transformer()

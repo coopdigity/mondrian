@@ -4,7 +4,7 @@
 // http://www.eclipse.org/legal/epl-v10.html.
 // You must accept the terms of that agreement to use this software.
 //
-// Copyright (c) 2002-2020 Hitachi Vantara..  All rights reserved.
+// Copyright (c) 2002-2021 Hitachi Vantara..  All rights reserved.
 */
 package mondrian.rolap;
 
@@ -33,6 +33,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
@@ -144,6 +145,7 @@ public class SqlStatement {
 
       this.jdbcConnection = dataSource.getConnection();
       querySemaphore.acquire();
+
       haveSemaphore = true;
       // Trace start of execution.
       if ( RolapUtil.SQL_LOGGER.isDebugEnabled() ) {
@@ -506,7 +508,7 @@ public class SqlStatement {
    */
   public ResultSet getWrappedResultSet() {
     return (ResultSet) Proxy.newProxyInstance(
-      null,
+      ResultSet.class.getClassLoader(),
       new Class<?>[] { ResultSet.class },
       new MyDelegatingInvocationHandler( this ) );
   }

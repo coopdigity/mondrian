@@ -5,7 +5,7 @@
 // You must accept the terms of that agreement to use this software.
 //
 // Copyright (C) 2001-2005 Julian Hyde
-// Copyright (C) 2005-2020 Hitachi Vantara and others
+// Copyright (C) 2005-2023 Hitachi Vantara and others
 // All Rights Reserved.
 */
 package mondrian.rolap;
@@ -21,7 +21,9 @@ import mondrian.spi.impl.JndiDataSourceResolver;
 import mondrian.util.*;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import org.eigenbase.util.property.StringProperty;
 
@@ -52,7 +54,7 @@ import javax.sql.DataSource;
  */
 public class RolapConnection extends ConnectionBase {
   private static final Logger LOGGER =
-    Logger.getLogger( RolapConnection.class );
+    LogManager.getLogger( RolapConnection.class );
   private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 
   private final MondrianServer server;
@@ -828,7 +830,7 @@ public class RolapConnection extends ConnectionBase {
     }
 
     public Connection getConnection() throws SQLException {
-      return new org.apache.commons.dbcp.DelegatingConnection(
+      return new org.apache.commons.dbcp2.DelegatingConnection(
         java.sql.DriverManager.getConnection(
           jdbcConnectString, jdbcProperties ) );
     }
